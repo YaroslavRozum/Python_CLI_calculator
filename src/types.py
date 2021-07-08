@@ -33,3 +33,14 @@ class InputParser(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def parse_input(self) -> List[str]:
         raise NotImplementedError
+
+
+class InputTransformer(metaclass=abc.ABCMeta):
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        return ((hasattr(subclass, 'transform_input')
+                 and callable(subclass.transform_input)) or NotImplemented)
+
+    @abc.abstractmethod
+    def transform_input(self, expression: str) -> List[str]:
+        raise NotImplementedError
