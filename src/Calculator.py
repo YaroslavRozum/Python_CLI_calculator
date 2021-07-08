@@ -67,12 +67,9 @@ class Calculator():
 
         iterator = iter(expression)
         position_dict = dict(parameter_position=0)
-        while position_dict['parameter_position'] != len(expression) - 1:
+
+        while True:
             current_value = self._get_next_value(iterator, position_dict)
-            last_parameter = position_dict['parameter_position'] == len(
-                expression) - 1
-            if last_parameter:
-                continue
             operation = self._get_next_value(iterator, position_dict)
             if operation == sum_op or operation == sub_op:
                 return self.op_to_fn[operation](
@@ -91,5 +88,3 @@ class Calculator():
                 position_dict['parameter_position'] = 0
                 if len(expression) == 1:
                     return helpers.strings_to_numbers(expression)[0]
-
-        return 0
