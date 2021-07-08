@@ -2,7 +2,7 @@ sum_op = '+'
 mul_op = '*'
 div_op = '/'
 sub_op = '-'
-
+empty = ''
 operations = set([sum_op, mul_op, div_op, sub_op])
 
 numbers = set([

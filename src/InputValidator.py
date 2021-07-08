@@ -1,6 +1,7 @@
 from typing import List
 
-from .constants import close_bracket, dot, open_bracket, operations
+from .constants import (close_bracket, dot, empty, open_bracket, operations,
+                        sub_op)
 
 
 class InputValidator():
@@ -11,7 +12,10 @@ class InputValidator():
         splitted_str_number = str_number.split(dot)
         if len(splitted_str_number) > 2:
             return False
-        return all([string.isdigit() for string in splitted_str_number])
+        return all([
+            string.replace(sub_op, empty).isdigit()
+            for string in splitted_str_number
+        ])
 
     def validate_input(self, input_expression: List[str]) -> List[str]:
         balance = 0

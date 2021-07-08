@@ -1,8 +1,7 @@
 from typing import Iterator, List, Union
 
 from . import helpers
-from .constants import (close_bracket, div_op, mul_op, open_bracket, sub_op,
-                        sum_op)
+from .constants import close_bracket, div_op, mul_op, open_bracket, sum_op
 
 
 class Calculator():
@@ -10,16 +9,9 @@ class Calculator():
         self.op_to_fn = {
             sum_op: self._sum,
             div_op: self._div,
-            sub_op: self._sub,
             mul_op: self._mul,
         }
         self.parameter_position = -1
-
-    @staticmethod
-    @helpers.str_parameters_to_number
-    def _sub(num1: Union[int, float],
-             num2: Union[int, float]) -> Union[int, float]:
-        return num1 - num2
 
     @staticmethod
     @helpers.str_parameters_to_number
@@ -75,7 +67,7 @@ class Calculator():
             if position_dict['parameter_position'] == len(expression):
                 return current_value
             operation = self._get_next_value(iterator, position_dict)
-            if operation == sum_op or operation == sub_op:
+            if operation == sum_op:
                 return self.op_to_fn[operation](
                     current_value,
                     str(
