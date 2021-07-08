@@ -11,7 +11,6 @@ class Calculator():
             div_op: self._div,
             mul_op: self._mul,
         }
-        self.parameter_position = -1
 
     @staticmethod
     @helpers.str_parameters_to_number
