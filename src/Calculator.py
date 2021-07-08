@@ -62,6 +62,8 @@ class Calculator():
             return helpers.strings_to_numbers(expression)[0]
 
         if len(expression) == 3:
+            if expression[0] == open_bracket:
+                return expression[1]
             operation = expression[1]
             return self.op_to_fn[operation](expression[0], expression[-1])
 
@@ -70,6 +72,8 @@ class Calculator():
 
         while True:
             current_value = self._get_next_value(iterator, position_dict)
+            if position_dict['parameter_position'] == len(expression):
+                return current_value
             operation = self._get_next_value(iterator, position_dict)
             if operation == sum_op or operation == sub_op:
                 return self.op_to_fn[operation](

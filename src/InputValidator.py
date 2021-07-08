@@ -33,8 +33,10 @@ class InputValidator():
                     (input_expression[position + 1] == close_bracket
                         or input_expression[position + 1] in operations):
                 raise ValueError('Wrong Input')
-            if expression_part == close_bracket and input_expression[
-                    position + 1] not in operations:
+            if expression_part == close_bracket and not last_position \
+                and (input_expression[
+                    position + 1] not in operations
+                        and input_expression[position + 1] != close_bracket):
                 raise ValueError('Wrong Input')
             not_last_position = position < len(input_expression) - 1
             if not_last_position and expression_part[-1].isdigit(
